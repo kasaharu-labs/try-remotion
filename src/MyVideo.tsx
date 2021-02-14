@@ -1,4 +1,4 @@
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { interpolate, spring, Sequence, useCurrentFrame, useVideoConfig } from "remotion";
 
 const Title: React.FC<{title: string}> = ({title}) => {
   const frame = useCurrentFrame();
@@ -18,7 +18,12 @@ export const MyVideo = () => {
   return (
     <>
       <div style={{flex: 1, justifyContent: "center", alignItems: "center", color: "white"}}>
-        <Title title="Hello world"></Title>
+        <Sequence from={0} durationInFrames={40}>
+          <Title title="Hello"></Title>
+        </Sequence>
+        <Sequence from={40} durationInFrames={Infinity}>
+          <Title title="World"></Title>
+        </Sequence>
       </div>
       <div style={{flex: 1, justifyContent: "center", alignItems: "center", color: "white"}}>
         The current frame is {frame}.
